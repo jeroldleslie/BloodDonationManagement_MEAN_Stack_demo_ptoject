@@ -1,0 +1,19 @@
+<div id="viewDiv" style="height:100%">
+<ng-content></ng-content>
+</div>
+<div bsModal #donorModal="bs-modal" class="modal fade" (onHidden)="donorForm.clearForm()" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Add Blood Donor</h4>
+                <button type="button" class="close pull-right" (click)="donorModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <donor-form #donorForm (onSubmitSuccess)="onFormSubmitSUccess()" [geo-point]="currentPoint"></donor-form>
+            </div>
+        </div>
+    </div>
+</div>

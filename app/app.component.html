@@ -1,0 +1,19 @@
+<div class="banner" (click)="goHomePage()">
+    <img src="{{logoSrc}}" height="60px" alt="/">
+    <div class="conrolsParent">
+        <div class="conrols">
+            <div #manageControlDiv *ngIf="homePage">
+                <input type="text" placeholder="Blood donor ID" [(ngModel)]="bdid" />
+                <button class="btn btn-primary" (click)="goManagePage()">Manage Blood Donor Account</button>
+            </div>
+            <a #homeLink *ngIf="!homePage" routerLink="/home" routerLinkActive="active" (click)="goHomePage()">Go Home</a>
+        </div>
+
+        <div class="welcomeNote">
+            <h4>Welcome to onlinebloodbank.com!</h4>
+        </div>
+    </div>
+</div>
+
+<bb-alert></bb-alert>
+<router-outlet></router-outlet>

@@ -1,0 +1,113 @@
+<section>
+    <form [formGroup]="bbForm" novalidate (ngSubmit)="save($event, bbForm.value, bbForm.valid)">
+        <div id="leftContainer">
+            <div class="form-group form-item">
+                <label for="">First Name</label>
+                <input type="text" class="form-control input-sm" formControlName="fname">
+                <small [hidden]="bbForm.controls.fname.valid || (bbForm.controls.fname.pristine && !submitted)" class="text-danger">
+            First Name is required (minimum 5 characters).
+          </small>
+                <!--<pre class="margin-20">{{ bbForm.controls.name.errors | json }}</pre>-->
+            </div>
+            <div class="form-group form-item">
+                <label for="">Last Name</label>
+                <input type="text" class="form-control input-sm" formControlName="lname">
+                <!--<pre class="margin-20">{{ bbForm.controls.name.errors | json }}</pre>-->
+            </div>
+            <div class="form-group form-item">
+                <label for="">Contact Number</label>
+                <input type="text" class="form-control input-sm" formControlName="contactNum" pattern="^(?:00|\+)\d{2} \d{3} \d{4} \d{3}$">
+                <small [hidden]="bbForm.controls.contactNum.valid || (bbForm.controls.contactNum.pristine && !submitted)" class="text-danger">
+            Contact Number is required and format should be <i>(+xx xxx xxxx xxx | 00xx xxx xxxx xxx)</i>.
+          </small>
+                <!--<pre class="margin-20">{{ bbForm.controls.name.errors | json }}</pre>-->
+            </div>
+            <div class="form-group form-item">
+                <label for="">Email</label>
+                <input type="text" class="form-control input-sm" formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <small [hidden]="bbForm.controls.email.valid || (bbForm.controls.email.pristine && !submitted)" class="text-danger">
+            Email is required and format should be <i>john@doe.com</i>.
+        </small>
+
+                <!--<pre class="margin-20">{{ bbForm.controls.name.errors | json }}</pre>-->
+            </div>
+
+
+            <div class="form-group form-item">
+                <label for="">Blood Group</label>
+                <select class="form-control input-sm" formControlName="bloodGroup">
+                    <option *ngFor="let bloodGroup of bloodGroups"
+                    [value]="bloodGroup">
+                        {{bloodGroup}}
+                    </option>
+                </select>
+                <small [hidden]="bbForm.controls.bloodGroup.valid || (bbForm.controls.bloodGroup.pristine && !submitted)" class="text-danger">
+            Blood Group is required.
+        </small>
+                <!--<pre class="margin-20">{{ bbForm.controls.name.errors | json }}</pre>-->
+            </div>
+
+        </div>
+
+        <div id="rightContainer">
+            <div class="form-group form-item" formGroupName="address">
+                <label for="">Address</label>
+                <input type="text" class="form-control input-sm" formControlName="addr">
+                <small [hidden]="bbForm.controls.address.controls.addr.valid || (bbForm.controls.address.controls.addr.pristine && !submitted)"
+                    class="text-danger">
+                Address is required.
+          </small>
+            </div>
+
+            <div class="form-group form-item" formGroupName="address">
+                <label for="">City</label>
+                <input type="text" class="form-control input-sm" formControlName="city">
+                <small [hidden]="bbForm.controls.address.controls.city.valid || (bbForm.controls.address.controls.city.pristine && !submitted)"
+                    class="text-danger">
+                City is required.
+          </small>
+            </div>
+            <div class="form-group form-item" formGroupName="address">
+                <label for="">State</label>
+                <input type="text" class="form-control input-sm" formControlName="state">
+                <small [hidden]="bbForm.controls.address.controls.state.valid || (bbForm.controls.address.controls.state.pristine && !submitted)"
+                    class="text-danger">
+                State is required.
+          </small>
+            </div>
+            <div class="form-group form-item" formGroupName="address">
+                <label for="">Country</label>
+                <input type="text" class="form-control input-sm" formControlName="country">
+                <small [hidden]="bbForm.controls.address.controls.country.valid
+                || (bbForm.controls.address.controls.country.pristine && !submitted)" class="text-danger"> Country is required.
+                </small>
+            </div>
+            <div class="form-group form-item" formGroupName="address">
+                <label for="">Postalcode</label>
+                <input type="text" class="form-control input-sm" formControlName="pcode">
+                <small [hidden]="bbForm.controls.address.controls.pcode.valid || (bbForm.controls.address.controls.pcode.pristine && !submitted)"
+                    class="text-danger">
+                Postalcode is required.
+          </small>
+            </div>
+        </div>
+        <div id="hiddenFormDiv">
+            <input type="text" formControlName="_id" hidden>
+            <div formGroupName="location">
+                <!-- <input type="text" formControlName="coordinates[]" name="coordinates[]" hidden>
+                <input type="text" formControlName="coordinates[]" name="coordinates[]" hidden>-->
+                <div formArrayName="coordinates">
+                    <div *ngFor="let coordinate of bbForm.controls.location.controls.coordinates.controls; let i=index">
+                        <input [formControlName]="i" hidden>
+                    </div>
+                </div>
+                <input type="text" formControlName="type" hidden>
+            </div>
+        </div>
+
+        <div id="bottomContainer">
+            <button class="btn btn-danger pull-left deleteButton" (click)="deleteDonor($event)" *ngIf="manageMode">Delete</button>
+            <button type="submit" class="btn btn-primary pull-right saveButton">Save</button>
+        </div>
+    </form>
+</section>

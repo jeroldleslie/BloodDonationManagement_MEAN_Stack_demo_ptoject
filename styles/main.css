@@ -1,0 +1,82 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.main-container {
+  padding: 0;
+}
+
+
+section {
+  width: 100%;
+  height: 500px;
+  position: relative;
+}
+
+#leftContainer{
+  float: left;
+  width: 50%;
+  height: 450px;
+  padding: 5px;
+}
+#rightContainer{
+  float: left;
+  width: 50%;
+  height: 450px;
+  padding: 5px;
+}
+
+#bottomContainer{
+    clear: both;
+    height: 40px;
+    padding: 10px;
+    bottom: 1px;
+     margin: 10px;
+}
+
+.form-item{
+height: 80px;
+}
+
+#hiddenFormDiv{
+  display: none;
+}
+
+
+.banner{
+height: 70px;
+margin: 10px;
+margin-left: 50px;
+margin-right: 50px;
+}
+.conrolsParent{
+ height: 70px;
+ float: right;
+ text-align: right;
+}
+.conrols{
+  height: 40px;
+  top: 0;
+  text-align: right;
+}
+
+.welcomeNote{
+  vertical-align: middle;
+  bottom: 0;
+  text-align: right;
+}
+
+
+.saveButton{
+  width: 200px;
+  margin: 10px;
+}
+
+.deleteButton{
+  width: 200px;
+  margin: 10px;
+}
+
